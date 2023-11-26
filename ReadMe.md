@@ -125,6 +125,8 @@ Configure your OpenAI API key in the FastAPI application script.
 Ensure the CSV file is formatted correctly and includes the required fields for the embedding script.
 Adjust the vector_embedding_inserter.py script if the fields differ from those expected.
 
+Queries and the responses are shown in the 'Query Search.postman_collection.json' file .
+
 ```
 
 #### API Reference
