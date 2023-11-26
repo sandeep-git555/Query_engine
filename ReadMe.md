@@ -7,7 +7,6 @@ This repository provides a suite of tools for creating a semantic search engine 
 The project is composed of two parts:
 1. `vector_embedding_inserter.py`: A script for reading product data from a CSV file, generating vector embeddings, and inserting them into a Qdrant database.
 2. `main.py`: A FastAPI application that provides an API endpoint to perform a vector-based search on the Qdrant database using natural language queries processed by OpenAI's GPT-3.5 model.
-
 ## Getting Started
 
 ### Prerequisites
@@ -62,11 +61,11 @@ dataset = pd.read_csv("bigBasketProducts.csv"): The CSV file bigBasketProducts.c
 dataset_df = pd.DataFrame(dataset): A new DataFrame is created from the loaded data for further processing.
 Embedding Process: For each column of interest (such as 'product', 'category', etc.), the script applies the embed_query method of the embeddings object to each value in the column to generate embeddings. This is done in a loop, and the embeddings for each column are stored in a new column with the suffix _embedding.
 
-Output Embedded Data: After embedding, the DataFrame is saved back to a new CSV file named 'output.csv'.
-
 Qdrant Client Setup: A QdrantClient is initialized to connect to a Qdrant server running locally on the default port 6333.
 
 Vector Space Configuration: The vector size is determined from the length of the embedding of the 'description' field. The script then configures a collection in Qdrant called "Products", setting up the vector space for each field with the cosine distance metric.
+
+```
 
 ### Code Explanation 
 
@@ -74,11 +73,12 @@ Data Insertion into Qdrant:
 
 The DataFrame length is calculated, and a loop is set up to insert the data into the Qdrant collection in batches of 100.
 Within the loop, for each batch, a smaller DataFrame mini_dataset_df is created with the current slice of the main DataFrame.
-The client.upsert method is called to insert the points into the "Products" collection. Each point represents a product, with its various attributes (like 'product', 'category', etc.) and their respective embeddings.
-Each point also includes a payload, which is a dictionary with the product's index and name.
-Completion: Once the loop has finished processing all batches, a completion message is printed.
+The client.upsert method is called to insert the points into the "Products" collection. Each point represents a product, with its various attributes (like 'product', 'category', etc.) and their respective embeddings.Each point also includes a payload, which is a dictionary with the product's index and name. Once the loop has finished processing all batches, a completion message is printed.
 
 This script essentially reads product information from a CSV, creates vector embeddings for the textual data, and then inserts these embeddings into a Qdrant collection for later retrieval and similarity searching. This is useful for building a semantic search engine where users can query products based on textual similarity rather than exact matches.
+
+
+Output Embedded Data: After embedding, the DataFrame is saved back to a new CSV file named 'output.csv'. Google drive Link to output.csv file. "https://drive.google.com/file/d/100fBR07VV51jkJ0Ez6yvzRA0TQBrPiKa/view?usp=sharing"
 
 
 The 'main.py' Python code defines a FastAPI application that performs a vector-based search on a Qdrant database using vector embeddings. It leverages the HuggingFace embeddings model to convert text queries into vector embeddings, and then uses those embeddings to find the most similar items in the Qdrant database. It also integrates with the OpenAI GPT-3.5 API to process natural language queries into structured JSON that can be used to perform the search.
