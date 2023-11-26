@@ -53,7 +53,39 @@ Usage
 Ensure 'bigBasketProducts.csv' is placed in the root directory of the project.
 Run the script using the command: python vector_embedding_inserter.py
 
+The given Python code defines a FastAPI application that performs a vector-based search on a Qdrant database using vector embeddings. It leverages the HuggingFace embeddings model to convert text queries into vector embeddings, and then uses those embeddings to find the most similar items in the Qdrant database. It also integrates with the OpenAI GPT-3.5 API to process natural language queries into structured JSON that can be used to perform the search.
 This FastAPI application provides a '/query-search' endpoint that accepts natural language queries about products and returns the most relevant product names.
+
+Imports and Initializations:
+
+Union from typing and FastAPI from fastapi are used for type hinting and to define the web API, respectively.
+BaseModel from pydantic is used for request body validation.
+QdrantClient from qdrant_client is used to interact with the Qdrant database.
+HuggingFaceEmbeddings from langchain.embeddings is used to generate vector embeddings from text.
+OpenAI from openai is used to interact with the OpenAI API.
+json is used for JSON parsing and formatting.
+FastAPI App Definition: An instance of FastAPI is created, which is the framework that will handle incoming web requests.
+
+API Endpoint /query-search:
+
+This endpoint accepts POST requests containing a JSON body with a single query string.
+It uses the OpenAI API to break down the user's natural language query into structured JSON that represents different attributes of a product (like product, category, rating, etc.).
+The JSON structure is predefined in example_json and is used as a template for the AI to fill in with details extracted from the user's query.
+After receiving the structured JSON from OpenAI, the script extracts the values and uses them to perform a search in the Qdrant database.
+Search Logic:
+
+For each non-null attribute in the JSON, a search is performed in the Qdrant database within the "Products" collection using the query_qdrant function.
+It aggregates the scores for products that match multiple attributes, sums these scores, and keeps track of them in product_scores.
+product_names stores the actual product names indexed by their unique identifiers.
+The script then selects the top three product IDs based on the highest aggregate scores.
+The query_qdrant Function:
+
+This function takes a textual query and a vector field name (like product, category, etc.), generates an embedding for the query, and performs a vector search in the Qdrant database.
+It returns the search results, which include the product's unique identifier, its score, and its payload (additional data associated with the vector).
+Return Value:
+
+The endpoint returns the names of the top three products with the highest aggregated scores.
+This application essentially provides a REST API endpoint that allows users to search for products using natural language queries. It uses advanced NLP models to interpret the queries and a vector database for efficient similarity search. It's an example of how modern AI-powered search engines can go beyond keyword matching to understand user intent and context.
 
 Usage
 Start the FastAPI server: uvicorn main:app --reload
