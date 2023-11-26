@@ -34,6 +34,17 @@ Install the necessary dependencies :
 pip install -r requirements.txt
 
 Now make sure Qdrant is running and accessible on the configured port.
+First, download the latest Qdrant image from Dockerhub:
+'docker pull qdrant/qdrant'
+Then, run the service:
+docker run -p 6333:6333 -p 6334:6334 \
+    -v $(pwd)/qdrant_storage:/qdrant/storage:z \
+    qdrant/qdrant
+
+Under the default configuration all data will be stored in the ./qdrant_storage directory. This will also be the only directory that both the Container and the host machine can both see.
+
+SentenceTransformers is a Python framework for state-of-the-art sentence, text and image embeddings. You can use this framework to compute sentence / text embeddings for more than 100 languages. These embeddings can then be compared e.g. with cosine-similarity to find sentences with a similar meaning.
+
 
 Vector Embedding Script:
 This script ('vector_embedding_inserter.py') processes a CSV file to create vector embeddings for product-related fields and inserts the data into a Qdrant collection.
