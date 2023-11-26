@@ -68,6 +68,8 @@ Qdrant Client Setup: A QdrantClient is initialized to connect to a Qdrant server
 
 Vector Space Configuration: The vector size is determined from the length of the embedding of the 'description' field. The script then configures a collection in Qdrant called "Products", setting up the vector space for each field with the cosine distance metric.
 
+### Code Explanation 
+
 Data Insertion into Qdrant:
 
 The DataFrame length is calculated, and a loop is set up to insert the data into the Qdrant collection in batches of 100.
