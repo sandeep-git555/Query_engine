@@ -3,24 +3,35 @@ from qdrant_client.models import VectorParams, Distance, PointStruct
 import pandas as pd
 from langchain.embeddings import HuggingFaceEmbeddings
 import os
+from ast import literal_eval
+import time
 
 embeddings = HuggingFaceEmbeddings()
 
 
-dataset = pd.read_csv("bigBasketProducts.csv")
-dataset_df = pd.DataFrame(dataset)
+if not os.path.exists('./output.csv') :
+    dataset = pd.read_csv("bigBasketProducts.csv")
+    dataset_df = pd.DataFrame(dataset)
 
-for v in ['product', 'category', 'sub_category', 'brand', 'sale_price', 'market_price', 'type', 'rating', 'description']:
-    print("embeddding " + v + " started")
-    dataset_df[v + '_embedding'] = dataset_df[v].apply(
-        lambda x: embeddings.embed_query(str(x))
-    )
-    print("embeddding " + v + " ended. Moving to next one.")
+    for v in ['product', 'category', 'sub_category', 'brand', 'sale_price', 'market_price', 'type', 'rating', 'description']:
+        print("embeddding " + v + " started")
+        start = time.time()
+        dataset_df[v + '_embedding'] = dataset_df[v].apply(
+            lambda x: embeddings.embed_query(str(x))
+        )
+        end = time.time()
+        print(f'embeddding {v} ended. Moving to next one. Runtime: {end - start}s')
 
 
-dataset_df.to_csv('output.csv', index = False)
-print("File output.csv created with embeddings.")
+    dataset_df.to_csv('output.csv', index = False)
+    print("File output.csv created with embeddings.")
 
+else:
+    print("Reading output csv file")
+    dataset_df = pd.DataFrame(pd.read_csv("output.csv"))
+    for v in ['product', 'category', 'sub_category', 'brand', 'sale_price', 'market_price', 'type', 'rating', 'description']:
+        dataset_df[v + '_embedding'] = dataset_df[v + '_embedding'].apply(literal_eval)
+    print("Completed reading output csv file")
 
 client = QdrantClient(host='localhost', port=6333)
 
@@ -70,17 +81,15 @@ client.recreate_collection(
 )
 
 frame_len = len(dataset_df.index)
-fract = int(frame_len/30)
-rem = frame_len%30
+fract = int(frame_len/100)
+rem = frame_len%100
 ind = 0
 while ind <= fract:
-    print(ind)
     if ind < fract:
-        mini_dataset_df = dataset_df.iloc[ind*30:ind*30 + 29]
+        mini_dataset_df = dataset_df.iloc[ind*100:ind*100 + 99]
     if ind == fract:
-        mini_dataset_df = dataset_df.iloc[ind*30: ind*30 + rem]
+        mini_dataset_df = dataset_df.iloc[ind*100: ind*100 + rem]
 
-    print(mini_dataset_df)
     client.upsert(
         collection_name="Products",
         points=[
@@ -105,4 +114,5 @@ while ind <= fract:
     ind += 1
 
 print("completed saving vectors in qdrant db")
+
 
