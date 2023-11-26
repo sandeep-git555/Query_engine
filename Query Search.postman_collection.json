@@ -1,0 +1,570 @@
+{
+	"info": {
+		"name": "Query Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24014830"
+	},
+	"item": [
+		{
+			"name": "Snacks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\" : \"Late night snacks healthy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/query-search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"query-search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Snacks",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\" : \"Late night snacks healthy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/query-search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"query-search"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 26 Nov 2023 22:58:50 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "189"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 6612,\n        \"name\": \"Pizza Snacks\",\n        \"score\": 0.726\n    },\n    {\n        \"id\": 7493,\n        \"name\": \"Nuts & Dried Berry Mix\",\n        \"score\": 0.568\n    },\n    {\n        \"id\": 1539,\n        \"name\": \"Healthy Snacks - Yoghurt Berry + Anti-Oxidants\",\n        \"score\": 0.506\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Facewash",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\" : \"Face wash around 200\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/query-search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"query-search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Facewash",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\" : \"Face wash around 200\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/query-search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"query-search"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 26 Nov 2023 22:59:03 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "152"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 13303,\n        \"name\": \"Face Wash\",\n        \"score\": 1\n    },\n    {\n        \"id\": 5449,\n        \"name\": \"Face Wash\",\n        \"score\": 1\n    },\n    {\n        \"id\": 9995,\n        \"name\": \"Pristine Purifying Face Wash\",\n        \"score\": 0.862\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Biscuits",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\" : \"Oreo biscuits\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/query-search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"query-search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Biscuits",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\" : \"Oreo biscuits\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/query-search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"query-search"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 26 Nov 2023 22:59:13 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "145"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 6027,\n        \"name\": \"Oreo\",\n        \"score\": 0.776\n    },\n    {\n        \"id\": 6197,\n        \"name\": \"Oreo - Dipped Cookie\",\n        \"score\": 0.727\n    },\n    {\n        \"id\": 7262,\n        \"name\": \"Dog Biscuits\",\n        \"score\": 0.716\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Shampoo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\" : \"collagen shampoo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/query-search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"query-search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Shampoo",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\" : \"collagen shampoo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/query-search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"query-search"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 26 Nov 2023 22:59:24 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "195"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 11582,\n        \"name\": \"Biotin & Collagen Hair Conditioner\",\n        \"score\": 1.306\n    },\n    {\n        \"id\": 8720,\n        \"name\": \"Biolage Advanced Repairinside Shampoo\",\n        \"score\": 0.746\n    },\n    {\n        \"id\": 13569,\n        \"name\": \"Collagen Serum\",\n        \"score\": 0.74\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Pet Toy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\" : \"Pet toy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/query-search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"query-search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Pet Toy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\" : \"Pet toy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/query-search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"query-search"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 26 Nov 2023 22:47:35 GMT",
+							"type": "text"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn",
+							"type": "text"
+						},
+						{
+							"key": "content-length",
+							"value": "240",
+							"type": "text"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 7296,\n        \"name\": \"Pet Toy/Chew Play Woven Balls With Inner Bell - Small, BB301\",\n        \"score\": 0.622\n    },\n    {\n        \"id\": 4292,\n        \"name\": \"Pet Toy Ring - Assorted Colour, BB1522\",\n        \"score\": 0.608\n    },\n    {\n        \"id\": 2612,\n        \"name\": \"Pet Toy - Assorted Colour, BB1515\",\n        \"score\": 0.608\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Lip balm",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\" : \"lip balm for hydration\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/query-search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"query-search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Lip balm",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\" : \"lip balm for hydration\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/query-search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"query-search"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 26 Nov 2023 22:59:34 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "178"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 8707,\n        \"name\": \"Hydra Lip Care Honey\",\n        \"score\": 1.358\n    },\n    {\n        \"id\": 187,\n        \"name\": \"Herbal Wine Grapefruit Lip Balm\",\n        \"score\": 0.705\n    },\n    {\n        \"id\": 6711,\n        \"name\": \"Strawberry Lip Balm\",\n        \"score\": 0.686\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Drinks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\" : \"Cold Drinks to keep me energetic\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/query-search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"query-search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Drinks",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\" : \"Cold Drinks to keep me energetic\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/query-search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"query-search"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 26 Nov 2023 23:01:18 GMT",
+							"type": "text"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn",
+							"type": "text"
+						},
+						{
+							"key": "content-length",
+							"value": "180",
+							"type": "text"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 9430,\n        \"name\": \"Soft Drink\",\n        \"score\": 0.556\n    },\n    {\n        \"id\": 4035,\n        \"name\": \"Milk Shake - Chocolate\",\n        \"score\": 0.522\n    },\n    {\n        \"id\": 12532,\n        \"name\": \"Sporty Plastic water Bottle - Assorted\",\n        \"score\": 0.519\n    }\n]"
+				}
+			]
+		}
+	]
+}
