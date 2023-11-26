@@ -47,7 +47,6 @@ pip install -U sentence-transformers
 Vector Embedding Script:
 This script ('vector_embedding_inserter.py') processes a CSV file to create vector embeddings for product-related fields and inserts the data into a Qdrant collection.
 
-Usage:
 Ensure 'bigBasketProducts.csv' is placed in the root directory of the project.
 Run the script using the command: python vector_embedding_inserter.py
 
@@ -56,7 +55,6 @@ Import Statements: The script begins by importing necessary libraries and module
 Embeddings Initialization: An object of HuggingFaceEmbeddings is created. This object will be used to generate vector embeddings for textual data.
 
 Load and Prepare Dataset:
-
 dataset = pd.read_csv("bigBasketProducts.csv"): The CSV file bigBasketProducts.csv is loaded into a pandas DataFrame.
 dataset_df = pd.DataFrame(dataset): A new DataFrame is created from the loaded data for further processing.
 Embedding Process: For each column of interest (such as 'product', 'category', etc.), the script applies the embed_query method of the embeddings object to each value in the column to generate embeddings. This is done in a loop, and the embeddings for each column are stored in a new column with the suffix _embedding.
@@ -72,11 +70,10 @@ Vector Space Configuration: The vector size is determined from the length of the
 Data Insertion into Qdrant:
 
 The DataFrame length is calculated, and a loop is set up to insert the data into the Qdrant collection in batches of 100.
-Within the loop, for each batch, a smaller DataFrame mini_dataset_df is created with the current slice of the main DataFrame.
-The client.upsert method is called to insert the points into the "Products" collection. Each point represents a product, with its various attributes (like 'product', 'category', etc.) and their respective embeddings.Each point also includes a payload, which is a dictionary with the product's index and name. Once the loop has finished processing all batches, a completion message is printed.
+Within the loop, for each batch, a smaller DataFrame 'mini_dataset_df' is created with the current slice of the main DataFrame.
+The 'client.upsert' method is called to insert the points into the "Products" collection. Each point represents a product, with its various attributes (like 'product', 'category', etc.) and their respective embeddings. Each point also includes a payload, which is a dictionary with the product's index and name. Once the loop has finished processing all batches, a completion message is printed.
 
-This script essentially reads product information from a CSV, creates vector embeddings for the textual data, and then inserts these embeddings into a Qdrant collection for later retrieval and similarity searching. This is useful for building a semantic search engine where users can query products based on textual similarity rather than exact matches.
-
+It essentially reads product information from a CSV, creates vector embeddings for the textual data, and then inserts these embeddings into a Qdrant collection for later retrieval and similarity searching. This is useful for building a semantic search engine where users can query products based on textual similarity rather than exact matches.
 
 Output Embedded Data: After embedding, the DataFrame is saved back to a new CSV file named 'output.csv'. Google drive Link to output.csv file. "https://drive.google.com/file/d/100fBR07VV51jkJ0Ez6yvzRA0TQBrPiKa/view?usp=sharing"
 
@@ -100,17 +97,13 @@ This endpoint accepts POST requests containing a JSON body with a single query s
 It uses the OpenAI API to break down the user's natural language query into structured JSON that represents different attributes of a product (like product, category, rating, etc.).
 The JSON structure is predefined in example_json and is used as a template for the AI to fill in with details extracted from the user's query.
 After receiving the structured JSON from OpenAI, the script extracts the values and uses them to perform a search in the Qdrant database.
-Search Logic:
 
-For each non-null attribute in the JSON, a search is performed in the Qdrant database within the "Products" collection using the query_qdrant function.
+For each non-null attribute in the JSON, a search is performed in the Qdrant database within the "Products" collection using the 'query_qdrant' function.
 It aggregates the scores for products that match multiple attributes, sums these scores, and keeps track of them in product_scores.
 product_names stores the actual product names indexed by their unique identifiers.
 The script then selects the top three product IDs based on the highest aggregate scores.
-The query_qdrant Function:
-
-This function takes a textual query and a vector field name (like product, category, etc.), generates an embedding for the query, and performs a vector search in the Qdrant database.
+The query_qdrant Function takes a textual query and a vector field name (like product, category, etc.), generates an embedding for the query, and performs a vector search in the Qdrant database.
 It returns the search results, which include the product's unique identifier, its score, and its payload (additional data associated with the vector).
-Return Value:
 
 The endpoint returns the names of the top three products with the highest aggregated scores.
 This application essentially provides a REST API endpoint that allows users to search for products using natural language queries. It uses advanced NLP models to interpret the queries and a vector database for efficient similarity search. It's an example of how modern AI-powered search engines can go beyond keyword matching to understand user intent and context.
@@ -123,7 +116,7 @@ Send a POST request to '/query-search' with a JSON body containing a query field
 Configuration:
 Configure your OpenAI API key in the FastAPI application script.
 Ensure the CSV file is formatted correctly and includes the required fields for the embedding script.
-Adjust the vector_embedding_inserter.py script if the fields differ from those expected.
+Adjust the 'vector_embedding_inserter.py' script if the fields differ from those expected.
 
 Queries and the responses are shown in the 'Query Search.postman_collection.json' file .
 
