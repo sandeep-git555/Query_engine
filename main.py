@@ -7,10 +7,10 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from openai import OpenAI
 import json
 
-example_json = json.dumps({ 'product' : 'trimmer', 'sale_price' : '200', 'rating': '4', 'description': 'used for body hair also', 'brand' : 'philips', 'type': 'null', 'category' : 'Beauty & Hygiene'})
+example_json = json.dumps({ 'product' : 'trimmer', 'sale_price' : '200', 'rating': '4', 'description': 'used for body hair also', 'brand' : 'philips', 'type': 'Hair Removal', 'category' : 'Beauty & Hygiene'})
 embeddings = HuggingFaceEmbeddings()
 client = QdrantClient(host='localhost', port=6333)
-openai_client = OpenAI(api_key = "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")
+openai_client = OpenAI(api_key = "")
 
 app = FastAPI()
 
@@ -40,15 +40,24 @@ def query_search(search: SearchBody):
                 if product.payload['index'] in product_ids:
                     product_scores[product.payload['index']] += round(product.score, 3)
                 else:
-                    product_ids.append(product.payload['index'])
-                    product_scores[product.payload['index']] = round(product.score, 3)
-                    product_names[product.payload['index']] = product.payload['product']
+                    if (k in ['product', 'brand'] and product.score > 0.7) or (k in ['description']):
+                        product_ids.append(product.payload['index'])
+                        product_scores[product.payload['index']] = round(product.score, 3)
+                        product_names[product.payload['index']] = product.payload['product']
 
-    product_id1 = max(product_scores, key= lambda x: product_scores[x])
-    product_id2 = max(product_scores, key= lambda x: product_scores[x] < product_scores[product_id1])
-    product_id3 = max(product_scores, key= lambda x: product_scores[x] < product_scores[product_id2])
+
+    ans = []
+    if len(product_scores) > 0:
+        product_id1 = max(product_scores, key= lambda x: product_scores[x])
+        ans.append({"id" : product_id1, "name" : product_names[product_id1], "score" : product_scores[product_id1]})
+    if len(product_scores) > 1:
+        product_id2 = max(product_scores, key= lambda x: product_scores[x] <= product_scores[product_id1] and x != product_id1)
+        ans.append({"id" : product_id2, "name" : product_names[product_id2], "score" : product_scores[product_id2]})
+    if len(product_scores) > 2:
+        product_id3 = max(product_scores, key= lambda x: product_scores[x] <= product_scores[product_id2] and x != product_id1 and x != product_id2)
+        ans.append({"id" : product_id3, "name" : product_names[product_id3], "score" : product_scores[product_id3]})
     
-    return [product_names[product_id1], product_names[product_id2], product_names[product_id3] ]
+    return ans
 
 
 
